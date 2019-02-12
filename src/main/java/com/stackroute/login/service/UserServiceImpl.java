@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserServiceInterface {
 
             Optional<UserCredentials> savedUser=userRepository.findById(user.getUserName());
             if(!userRepository.existsById(user.getUserName())){
-                throw new UserNotFoundException("User doesnot exists");
+                throw new UserNotFoundException("User does not exists");
             }
             if(!(user.getPassword().equals(savedUser.get().getPassword()))){
                 throw new WrongPasswordException("Wrong Password");

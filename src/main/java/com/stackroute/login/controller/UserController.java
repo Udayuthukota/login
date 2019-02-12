@@ -1,5 +1,4 @@
 package com.stackroute.login.controller;
-
 import com.stackroute.login.domain.UserCredentials;
 import com.stackroute.login.exception.UserNotFoundException;
 import com.stackroute.login.exception.WrongPasswordException;
@@ -16,18 +15,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value="api/v1")
 public class UserController {
 
-    private UserServiceInterface userService;
+    UserServiceInterface userServiceInterface;
+
 @Autowired
     public UserController(UserServiceInterface userService) {
-        this.userService = userService;
+        this.userServiceInterface = userService;
     }
-    @GetMapping("/login")
-    public ResponseEntity<String> authenticateUser(@RequestParam String username,@RequestParam String password) throws UserNotFoundException, WrongPasswordException {
+    @GetMapping("login")
+    public ResponseEntity<String> checkUserNames(@RequestParam UserCredentials user) throws UserNotFoundException, WrongPasswordException {
 
     ResponseEntity<String> responseEntity;
     try {
 
-        userService.checkUserName(new UserCredentials("",""));
+        userServiceInterface.checkUserName(user);
         responseEntity=new ResponseEntity<>("bravo", HttpStatus.OK);
     }
     catch (Exception e){
