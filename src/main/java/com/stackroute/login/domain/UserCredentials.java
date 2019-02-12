@@ -2,9 +2,7 @@ package com.stackroute.login.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import javax.persistence.Id;
-
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -13,6 +11,7 @@ import javax.persistence.Entity;
 public class UserCredentials {
     @Id
     private  String userName;
+    @Column
     private String password;
 }
 
